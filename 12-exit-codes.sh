@@ -7,6 +7,8 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
+
+
 VALIDATE () {
     dnf install $1 -y
 
@@ -18,10 +20,15 @@ VALIDATE () {
     fi
 }
 
+VERIFY () {
+if [ dnf list installed $1 ]; then
+    VALIDATE $1
+}
+else
+    echo "SKIPPED:: $1 is already installed"
+fi
+}
 
-
-VALIDATE tree
-
-VALIDATE whois
-
-VALIDATE telnet
+VERIFY tree
+VERIFY whois
+VERIFY telnet
