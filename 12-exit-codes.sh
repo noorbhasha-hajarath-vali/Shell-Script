@@ -10,8 +10,9 @@ fi
 dnf install tree -y
 
 if [ $? -ne 0 ]; then
-    echo "ERROR:: Failed to Install"
+    echo "ERROR:: tree package installation failed"
     exit 1
 else
-    echo "SUCCESS:: mysql package installed successfully"
+    echo "SUCCESS:: tree package installed successfully"
 fi
+
