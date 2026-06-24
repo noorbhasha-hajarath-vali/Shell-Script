@@ -27,7 +27,6 @@ if [ dnf list installed $1 ]; then
 else
     echo "SKIPPED:: $1 is already installed"
 fi
-}
 
 VERIFY tree
 VERIFY whois
