@@ -21,10 +21,10 @@ VALIDATE () {
 }
 
 VERIFY () {
-    if [ dnf list installed $1 -ne 0 ]; then
-        VALIDATE $1
+    if [ dnf list installed $2 -ne 0 ]; then
+        VALIDATE $2
     else
-        echo "SKIPPED:: $1 is already installed"
+        echo "SKIPPED:: $2 is already installed"
     fi
 }
 
