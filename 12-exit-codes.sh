@@ -7,8 +7,6 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
-
-
 VALIDATE () {
     dnf install $1 -y
 
@@ -21,10 +19,12 @@ VALIDATE () {
 }
 
 VERIFY () {
-    if [ dnf list installed $2 -ne 0 ]; then
-        VALIDATE $2
+    dnf list installed $1 &>/dev/null
+
+    if [ $? -ne 0 ]; then
+        VALIDATE $1
     else
-        echo "SKIPPED:: $2 is already installed"
+        echo "SKIPPED:: $1 is already installed"
     fi
 }
 
