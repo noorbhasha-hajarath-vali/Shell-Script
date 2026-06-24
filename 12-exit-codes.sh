@@ -21,12 +21,13 @@ VALIDATE () {
 }
 
 VERIFY () {
-    if [ dnf list installed $1 ]; then
+    if [ dnf list installed $1 -ne 0 ]; then
         VALIDATE $1
     else
         echo "SKIPPED:: $1 is already installed"
     fi
 }
+
 VERIFY tree
 VERIFY whois
 VERIFY telnet
