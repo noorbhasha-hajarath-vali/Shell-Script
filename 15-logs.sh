@@ -6,12 +6,12 @@ mkdir -p $LOG_DIR
 SCRIPT_NAME=$(basename "$0" .sh)
 LOG_FILE="$LOG_DIR/$SCRIPT_NAME.log"
 
-echo "Script started executing at $(date)" | tee -a $LOG_FILE
-
 if [ $USERID -ne 0 ]; then
     echo "Failed:: Run script with SUDO privilages"
     exit 1
 fi
+
+echo "Script started executing at $(date)" | tee -a $LOG_FILE
 
 VALIDATE () {
     dnf install $1 -y &>> $LOG_FILE
