@@ -7,27 +7,11 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
-VALIDATE () {
-    dnf install $1 -y
+dnf install tree -y
 
-    if [ $? -ne 0 ]; then
-        echo "ERROR:: $1 package installation failed"
-        exit 1
-    else
-        echo "SUCCESS:: $1 package installed successfully"
-    fi
-}
-
-VERIFY () {
-    dnf list installed $1 &>/dev/null
-
-    if [ $? -ne 0 ]; then
-        VALIDATE $1
-    else
-        echo "SKIPPED:: $1 is already installed"
-    fi
-}
-
-VERIFY tree
-VERIFY whois
-VERIFY telnet
+if [ $? -ne 0 ]; then
+    echo "ERROR:: tree package installation failed"
+    exit 1
+else
+    echo "SUCCESS:: tree package installed successfully"
+fi
