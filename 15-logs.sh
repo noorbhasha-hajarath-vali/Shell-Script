@@ -28,7 +28,7 @@ VERIFY () {
     dnf list installed $1 &>> $LOG_FILE
 
     if [ $? -ne 0 ]; then
-        VALIDATE $1 | tee -a $LOG_FILE
+        VALIDATE $1
     else
         echo "SKIPPED:: $1 package is already installed" | tee -a $LOG_FILE
     fi
