@@ -9,7 +9,7 @@ LOG_FILE="$LOG_DIR/$SCRIPT_NAME.log"
 echo "Script started executing at $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
-    echo "Failed:: Run script with SUDO privilages" | tee -a $LOG_FILE
+    echo "Failed:: Run script with SUDO privilages"
     exit 1
 fi
 
