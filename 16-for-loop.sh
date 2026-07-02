@@ -21,7 +21,7 @@ VALIDATE () {
     if [ $? -ne 0 ]; then
         echo -e "$R ERROR $N:: $1 package installation Failed" | tee -a $LOG_FILE
     else
-        echo "$G SUCCESS $N:: $1 package installed Successfully" | tee -a $LOG_FILE
+        echo -e "$G SUCCESS $N:: $1 package installed Successfully" | tee -a $LOG_FILE
     fi
 }
 
@@ -32,6 +32,6 @@ do
         dnf install $1 -y &>>$LOG_FILE
         VALIDATE $? $package
     else
-        echo "$Y SKIPPING $N:: $package package already installed" | tee -a $LOG_FILE
+        echo -e "${Y}SKIPPING${N}:: $package package already installed" | tee -a $LOG_FILE
     fi
 done
