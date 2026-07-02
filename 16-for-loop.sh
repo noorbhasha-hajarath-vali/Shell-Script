@@ -14,8 +14,6 @@ fi
 echo "Process started executing at $(date)" | tee -a &>>$LOG_FILE
 
 VALIDATE () {
-    dnf install $1 -y &>>$LOG_FILE
-
     if [ $? -ne 0 ]; then
         echo "ERROR:: $1 package installation Failed" | tee -a $LOG_FILE
     else
@@ -27,7 +25,8 @@ for package in $@
 do
     dnf list installed $package &>>$LOG_FILE
     if [ $? -ne 0 ]; then
-        VALIDATE $package
+        dnf install $1 -y &>>$LOG_FILE
+        VALIDATE $? $package
     else
         echo "SKIPPING:: $package package already installed" | tee -a $LOG_FILE
     fi
