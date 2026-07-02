@@ -11,7 +11,7 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
-echo "Process started executing at $(date)" | tee -a &>>$LOG_FILE
+echo "Process started executing at $(date)" | tee -a $LOG_FILE
 
 VALIDATE () {
     if [ $? -ne 0 ]; then
