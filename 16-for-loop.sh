@@ -7,26 +7,18 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
-dnf install tree -y
+VALIDATE () {
+    dnf install $1 -y
 
-if [ $? -ne 0 ]; then
-    echo "ERROR:: tree package installation Failed"
-else
-    echo "SUCCESS:: tree package installed Successfully"
-fi
+    if [ $? -ne 0 ]; then
+        echo "ERROR:: $1 package installation Failed"
+    else
+        echo "SUCCESS:: $1 package installed Successfully"
+    fi
+}
 
-dnf install jq-devel -y
 
-if [ $? -ne 0 ]; then
-    echo "ERROR:: jq-devel package installation Failed"
-else
-    echo "SUCCESS:: jq-devel package installed Successfully"
-fi
+VALIDATE tree
+VALIDATE jq-devel
+VALIDATE 7zip
 
-dnf install 7zip -y
-
-if [ $? -ne 0 ]; then
-    echo "ERROR:: 7zip package installation Failed"
-else
-    echo "SUCCESS:: 7zip package installed Successfully"
-fi
