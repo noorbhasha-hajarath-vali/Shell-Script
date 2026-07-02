@@ -1,6 +1,10 @@
 #!/bin/bash
 
 USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 LOG_DIR=/var/log/shell-script
 mkdir -p $LOG_DIR
 SCRIPT_NAME=$(basename "$0" .sh)
@@ -15,9 +19,9 @@ echo "Process started executing at $(date)" | tee -a $LOG_FILE
 
 VALIDATE () {
     if [ $? -ne 0 ]; then
-        echo "ERROR:: $1 package installation Failed" | tee -a $LOG_FILE
+        echo -e "$RERROR$N:: $1 package installation Failed" | tee -a $LOG_FILE
     else
-        echo "SUCCESS:: $1 package installed Successfully" | tee -a $LOG_FILE
+        echo "$GSUCCESS$N:: $1 package installed Successfully" | tee -a $LOG_FILE
     fi
 }
 
@@ -28,6 +32,6 @@ do
         dnf install $1 -y &>>$LOG_FILE
         VALIDATE $? $package
     else
-        echo "SKIPPING:: $package package already installed" | tee -a $LOG_FILE
+        echo "$YSKIPPING$N:: $package package already installed" | tee -a $LOG_FILE
     fi
 done
