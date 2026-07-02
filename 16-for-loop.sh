@@ -19,9 +19,9 @@ echo "Process started executing at $(date)" | tee -a $LOG_FILE
 
 VALIDATE () {
     if [ $? -ne 0 ]; then
-        echo -e "$RERROR$N:: $1 package installation Failed" | tee -a $LOG_FILE
+        echo -e "$R ERROR $N:: $1 package installation Failed" | tee -a $LOG_FILE
     else
-        echo "$GSUCCESS$N:: $1 package installed Successfully" | tee -a $LOG_FILE
+        echo "$G SUCCESS $N:: $1 package installed Successfully" | tee -a $LOG_FILE
     fi
 }
 
@@ -32,6 +32,6 @@ do
         dnf install $1 -y &>>$LOG_FILE
         VALIDATE $? $package
     else
-        echo "$YSKIPPING$N:: $package package already installed" | tee -a $LOG_FILE
+        echo "$Y SKIPPING $N:: $package package already installed" | tee -a $LOG_FILE
     fi
 done
